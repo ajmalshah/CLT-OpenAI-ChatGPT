@@ -24,7 +24,7 @@ export type Citation = {
 
 export type ToolMessageContent = {
   citations: Citation[]
-  intent: string
+  intent: string | null
 }
 
 export type AzureSqlServerCodeExecResult = {

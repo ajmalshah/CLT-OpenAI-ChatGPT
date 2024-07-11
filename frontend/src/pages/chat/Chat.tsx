@@ -695,8 +695,8 @@ const Chat = () => {
   const parseCitationFromMessage = (message: ChatMessage) => {
     if (message?.role && message?.role === 'tool') {
       try {
-        const toolMessage = JSON.parse(JSON.stringify(message.content)) as ToolMessageContent
-        return toolMessage.citations
+        const toolMessage = message.content as unknown as Citation[]
+        return toolMessage
       } catch {
         return []
       }
@@ -789,7 +789,7 @@ const Chat = () => {
                             feedback: answer.feedback,
                             exec_results: execResults
                           }}
-                          onCitationClicked={c => onShowCitation(c)}
+                          onCitationClicked={c => onViewSource(c)}
                           onExectResultClicked={() => onShowExecResult()}
                         />
                       </div>
